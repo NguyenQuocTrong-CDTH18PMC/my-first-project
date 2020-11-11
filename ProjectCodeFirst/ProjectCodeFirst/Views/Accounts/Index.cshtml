@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProjectCodeFirst.Models.Account>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout_Manage.cshtml";
+}
+
+<h1>Quản lý tài khoản</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EMAIL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PASSWORD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.STATUS)
+            </th>
+            <th>TOOL</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EMAIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PASSWORD)
+            </td>
+            <td>
+                @if (item.STATUS == 1)
+                {
+                    <a style="align-content">Actived</a>
+                }
+                else
+                {
+                    <a style="align-content">No Active</a>
+                }
+            </td>
+            <td>
+                <a style="align-content" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a style="align-content" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a style="align-content" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
